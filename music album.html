@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .x{
+            width: 40%;
+            margin: auto;
+            text-align: center;
+            background-color:burlywood;
+            border: 4px red;
+            border-style:inset;
+        
+        }
+        .x i{
+            padding: 10px;
+            border: 2px solid black;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body background="https://cdn.wallpapersafari.com/62/49/7niL9C.jpg">
+    <audio>
+        <source src="Maan Meri Jaan_320(PagalWorld.com.se).mp3" type="audio/mp3"/>
+    </audio>
+    <div class="x">
+        <input type="range" min="0" value="0" id="pb" onchange="setprog()"/>
+        <i class="fa-solid fa-backward" onclick="bwd()"></i>
+        <i class="fa-solid fa-play" onclick="fun(this)"></i>
+        <i class="fa-solid fa-forward" onclick="fwd()"></i>
+    </div>
+    <script>
+        let ar=document.getElementsByTagName("audio")[0]
+        let pbr=document.getElementById("pb")
+        elr=undefined
+        function fun(el)
+        {
+            pbr.max=ar.duration
+            elr=el
+            let cl=el.classList
+            if(cl.contains("fa-play"))
+            {
+                cl.remove("fa-play")
+                cl.add("fa-pause")
+                el.classList=cl
+                ar.play()
+            }
+            else{
+                cl.remove("fa-pause")
+                cl.add("fa-play")
+                el.classList=cl
+                ar.pause()
+            }
+        }
+        function fwd()
+        {
+            ar.currentTime=ar.currentTime+10
+        }
+        function bwd()
+        {
+            ar.currentTime=ar.currentTime-10
+        }
+        function setprog()
+        {
+            ar.currentTime=pbr.value
+        }
+        function upprog()
+        {
+            pbr.value=ar.currentTime
+        }
+        setInterval(upprog,1000)
+        function stopplay()
+        {
+            if(ar.currentTime==ar.duration)
+            {
+                let cl=elr.classList
+                cl.remove("fa-pause")
+                cl.add("fa-play")
+                elr.classList=cl
+            }
+        }
+        setInterval(stopplay,1000)
+    </script>
+</body>
+</html>
